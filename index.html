@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    h2 {
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    main {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+
+    main>div {
+        width: 27%;
+        border: 1px solid blue;
+        text-align: center;
+        padding: 25px;
+        margin: 30px;
+        min-height: 300px;
+    }
+
+    h4 {
+        margin: 30px 0;
+    }
+</style>
+
+<body>
+    <h2>Fetch API with JavaScript</h2>
+    <main id="_main"></main>
+
+
+    <script>
+        async function load() {
+            let _main = document.getElementById('_main')
+            let xhttp = await fetch('https://jsonplaceholder.typicode.com/photos')
+            let data = await xhttp.json()
+            for (i = 0; i < 100; i++) {
+                let shortStory = `
+                <div>
+                <h1>${data[i].id}</h1>
+                <h4>${data[i].title}</h4>
+                <img src='${data[i].thumbnailUrl}'
+                </div>
+                `
+                _main.innerHTML += shortStory
+            }
+        }
+        load()
+    </script>
+</body>
+
+</html>
